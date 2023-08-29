@@ -8,7 +8,15 @@ public class Product {
     protected String name; // Наименование
     protected String brand; // Изготовитель
     protected double price; // Стоимость
+    protected int stock; // Остаток
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getStock() {
+        return stock;
+    }
 
     public String getName() {
         return name;
@@ -31,54 +39,57 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        if (price < 100){
+        if (price < 100) {
             throw new RuntimeException("Некорректная цена товара.");
         }
         this.price = price;
     }
 
-    public Product(){
+    public Product() {
         this("Noname");
     }
 
-    public Product(String name){
+    public Product(String name) {
         this(name, "Noname");
     }
 
-    public Product(String name, String brand){
+    public Product(String name, String brand) {
         this(name, brand, 100);
     }
 
-    public Product(String name, String brand, double price){
-        if (price < 100){
+    public Product(String name, String brand, double price, int stock) {
+        if (price < 100) {
             throw new RuntimeException("Некорректная цена товара.");
         }
         this.price = price;
+
+        if (stock < 0 || stock > 100) {
+            throw new RuntimeException("Некорректный остаток товара.");
+        }
+
+        this.stock = stock;
         checkName(name);
         checkBrand(brand);
     }
 
-    private void checkName(String name){
-        if (name == null || name.length() < 3){
+    private void checkName(String name) {
+        if (name == null || name.length() < 3) {
             this.name = "Noname";
-        }
-        else {
+        } else {
             this.name = name;
         }
     }
 
-    private void checkBrand(String brand){
-        if (brand == null || brand.length() < 3){
+    private void checkBrand(String brand) {
+        if (brand == null || brand.length() < 3) {
             this.brand = "Noname";
-        }
-        else {
+        } else {
             this.brand = brand;
         }
     }
 
-    public String displayInfo(){
+    public String displayInfo() {
         return String.format("%s - %s - %.2f", name, brand, price);
     }
-
 
 }

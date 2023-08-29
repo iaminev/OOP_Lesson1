@@ -4,8 +4,8 @@ public class BottleOfWater extends Product {
 
     private double volume; // Объем
 
-    public BottleOfWater(String name, String brand, double price, double volume){
-        super(name, brand, price);
+    public BottleOfWater(String name, String brand, double price, int stock, double volume) {
+        super(name, brand, price, stock);
         this.volume = volume;
     }
 
@@ -15,6 +15,6 @@ public class BottleOfWater extends Product {
 
     @Override
     public String displayInfo() {
-        return String.format("[Бутылка с водой] %s - %s - %.2f - v: %.2f", name, brand, price, volume);
+        return String.format("[Бутылка с водой] %s - %s - %.2f [%s] - объем: %.2f", name, brand, price, stock, volume);
     }
 }
